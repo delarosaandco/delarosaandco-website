@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>De La Rosa &amp; Co. — Premium Websites for Local Business</title>
+  <meta name="description" content="De La Rosa & Co. is a premier web studio building clean, high-end websites for local service businesses. Where small business wins big." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" sizes="512x512" href="brand/favicon-512.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="brand/favicon-32.png" />
+  <link rel="apple-touch-icon" href="brand/apple-touch-icon.png" />
+
+  <style>
+    /* ===== Tokens — editorial black on white ===== */
+    :root {
+      --bg:      #FDFDFC;   /* warm white */
+      --text:    #111110;   /* near-black */
+      --muted:   #6C6A64;   /* warm grey */
+      --faint:   #9A978F;   /* lighter grey */
+      --line:    rgba(17,17,16,0.12);
+      --line-2:  rgba(17,17,16,0.24);
+      --maxw:    1160px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      background:var(--bg); color:var(--text);
+      font-family:'Inter',system-ui,-apple-system,sans-serif;
+      font-weight:300; line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+    }
+    h1,h2 { font-family:'Anton',Impact,sans-serif; font-weight:400; line-height:1.04; letter-spacing:.005em; }
+    h3 { font-family:'Playfair Display',Georgia,serif; font-weight:500; line-height:1.12; letter-spacing:-0.01em; }
+    a { color:inherit; text-decoration:none; }
+    .wrap { max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+    .label { font-size:12px; letter-spacing:.26em; text-transform:uppercase; color:var(--faint); font-weight:500; display:inline-flex; align-items:center; gap:12px; }
+    .label::before { content:""; width:28px; height:1px; background:var(--line-2); }
+
+    /* ===== Arrow links (no boxes) ===== */
+    .alink { display:inline-flex; align-items:center; gap:9px; font-size:15px; font-weight:500; color:var(--text); position:relative; padding-bottom:3px; }
+    .alink svg { width:16px; height:16px; transition:transform .28s ease; }
+    .alink::after { content:""; position:absolute; left:0; bottom:0; height:1px; width:0; background:var(--text); transition:width .3s ease; }
+    .alink:hover::after { width:100%; }
+    .alink:hover svg { transform:translate(4px,-4px); }
+    .alink.right:hover svg { transform:translateX(5px); }
+    .alink.muted { color:var(--muted); }
+    .alink.down:hover svg { transform:translateY(4px); }
+
+    /* ===== Nav ===== */
+    header { position:fixed; top:0; left:0; right:0; z-index:50; padding:26px 0; transition:padding .3s ease, background .3s ease, border-color .3s ease; border-bottom:1px solid transparent; }
+    header.scrolled { padding:16px 0; background:rgba(253,253,252,.82); backdrop-filter:blur(14px); border-bottom-color:var(--line); }
+    .nav { display:flex; align-items:center; justify-content:space-between; }
+    .logo { display:inline-flex; align-items:center; gap:12px; }
+    .logo .mono-mark { width:30px; height:30px; color:var(--text); flex:none; }
+    .logo-name { font-family:'Inter',sans-serif; font-weight:600; font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--text); }
+    .nav-links { display:flex; align-items:center; gap:40px; }
+    .nav-links a.link { font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); font-weight:500; transition:color .2s; }
+    .nav-links a.link:hover { color:var(--text); }
+    .menu-btn { display:none; background:none; border:none; color:var(--text); font-size:24px; cursor:pointer; }
+
+    /* ===== Hero ===== */
+    .hero { min-height:100vh; display:flex; align-items:center; position:relative; padding:130px 0 90px; }
+    .hero .wrap { display:grid; grid-template-columns:1.2fr .8fr; align-items:center; gap:48px; }
+    .hero .label { margin-bottom:30px; }
+    .hero h1 { font-size:clamp(44px,7vw,88px); margin-bottom:30px; font-weight:500; }
+    .hero h1 em { font-family:'Playfair Display',serif; font-style:italic; font-weight:500; letter-spacing:-.01em; }
+    .hero p.lead { font-size:clamp(17px,1.9vw,20px); color:var(--muted); max-width:500px; margin-bottom:44px; }
+    .hero-cta { display:flex; gap:34px; flex-wrap:wrap; align-items:center; }
+
+    .emblem { justify-self:center; width:min(360px,84%); color:var(--text); }
+    .emblem .fr { fill:none; stroke:currentColor; stroke-width:1.4; }
+    .emblem .mn { font-family:'Anton',Impact,sans-serif; fill:currentColor; }
+    .emblem .es { font-family:'Inter',sans-serif; fill:var(--muted); font-weight:500; }
+
+    .scroll-cue { position:absolute; left:50%; bottom:30px; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:10px; color:var(--faint); }
+    .scroll-cue span { font-size:10px; letter-spacing:.26em; text-transform:uppercase; }
+    .scroll-cue .track { width:1px; height:50px; background:linear-gradient(var(--line-2),transparent); position:relative; overflow:hidden; }
+    .scroll-cue .dot { position:absolute; top:0; left:-1.5px; width:4px; height:4px; border-radius:50%; background:var(--text); animation:fall 2.2s cubic-bezier(.7,0,.3,1) infinite; }
+    @keyframes fall { 0%{ top:-6px; opacity:0; } 25%{ opacity:1; } 80%{ opacity:1; } 100%{ top:50px; opacity:0; } }
+
+    /* ===== Sections ===== */
+    section { padding:120px 0; }
+    .section-head { max-width:680px; margin-bottom:64px; }
+    .section-head .label { margin-bottom:22px; }
+    .section-head h2 { font-size:clamp(30px,4.4vw,50px); margin-bottom:20px; }
+    .section-head p { color:var(--muted); font-size:17px; }
+
+    /* Services — editorial columns divided by hairlines, no boxes */
+    .rows { border-top:1px solid var(--line); }
+    .row { display:grid; grid-template-columns:80px 1fr auto; gap:28px; align-items:start;
+      padding:34px 8px; border-bottom:1px solid var(--line); transition:padding-left .3s ease, background .3s ease; }
+    .row:hover { padding-left:20px; }
+    .row .num { font-family:'Playfair Display',serif; font-size:18px; color:var(--faint); }
+    .row .rc h3 { font-size:26px; margin-bottom:8px; font-weight:500; }
+    .row .rc p { color:var(--muted); font-size:15.5px; max-width:560px; }
+    .row .go { align-self:center; color:var(--text); opacity:0; transform:translateX(-8px); transition:all .3s ease; }
+    .row:hover .go { opacity:1; transform:translateX(0); }
+    .row .go svg { width:22px; height:22px; }
+
+    /* Approach */
+    .split { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+    .approach-list { list-style:none; margin-top:6px; }
+    .approach-list li { padding:26px 0; border-bottom:1px solid var(--line); }
+    .approach-list li:first-child { border-top:1px solid var(--line); }
+    .approach-list h3 { font-size:19px; font-family:'Inter',sans-serif; font-weight:500; margin-bottom:6px; display:flex; align-items:baseline; gap:12px; }
+    .approach-list h3 .mk { font-family:'Playfair Display',serif; color:var(--faint); font-size:15px; }
+    .approach-list p { color:var(--muted); font-size:15.5px; padding-left:27px; }
+    .stat { padding:30px 0; border-bottom:1px solid var(--line); }
+    .stat:first-child { border-top:1px solid var(--line); }
+    .stat .big { font-family:'Anton',Impact,sans-serif; font-size:60px; line-height:1; margin-bottom:8px; font-weight:400; letter-spacing:.01em; }
+    .stat .lbl { color:var(--muted); font-size:15px; }
+
+    /* Who we help */
+    .chips { display:flex; flex-wrap:wrap; gap:12px 14px; margin-top:6px; }
+    .chip { border:1px solid var(--line-2); border-radius:100px; padding:11px 22px; font-size:14.5px; color:var(--text); transition:all .25s; }
+    .chip:hover { background:var(--text); color:var(--bg); transform:translateY(-2px); }
+
+    /* Contact */
+    .contact { text-align:center; border-top:1px solid var(--line); }
+    .contact .label { justify-content:center; margin-bottom:24px; }
+    .contact .label::before { display:none; }
+    .contact h2 { font-size:clamp(34px,5.5vw,62px); margin-bottom:22px; font-weight:500; }
+    .contact p { color:var(--muted); font-size:18px; max-width:460px; margin:0 auto 40px; }
+    .contact-cta { display:flex; gap:36px; justify-content:center; flex-wrap:wrap; }
+
+    /* Footer */
+    footer { border-top:1px solid var(--line); padding:40px 0; }
+    .foot { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+    .foot .logo { font-size:18px; }
+    .foot p { color:var(--muted); font-size:13.5px; }
+    .foot .tag { color:var(--text); font-size:14px; font-style:italic; font-family:'Playfair Display',serif; }
+
+    /* Reveal */
+    .reveal { opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity:1; transform:none; }
+
+    @media (max-width:860px){
+      .hero .wrap { grid-template-columns:1fr; }
+      .emblem { display:none; }
+      .split { grid-template-columns:1fr; gap:44px; }
+      .row { grid-template-columns:48px 1fr; }
+      .row .go { display:none; }
+      .nav-links { position:fixed; inset:0 0 0 auto; width:min(76vw,300px); background:var(--bg);
+        flex-direction:column; align-items:flex-start; justify-content:center; gap:28px; padding:40px;
+        transform:translateX(100%); transition:transform .35s ease; border-left:1px solid var(--line); }
+      .nav-links.open { transform:translateX(0); }
+      .nav-links a.link { font-size:15px; }
+      .menu-btn { display:block; z-index:60; }
+      section { padding:84px 0; }
+      .scroll-cue { display:none; }
+    }
+    @media (prefers-reduced-motion:reduce){ *{ transition:none !important; scroll-behavior:auto; } .reveal{opacity:1;transform:none;} .scroll-cue .dot{animation:none;} }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <header id="site-header">
+    <div class="wrap nav">
+      <a href="#top" class="logo">
+        <svg class="mono-mark" viewBox="0 0 150 150" aria-hidden="true">
+          <g stroke="currentColor" stroke-width="5" fill="none">
+            <path d="M20 40 V20 H40"/><path d="M110 20 H130 V40"/>
+            <path d="M130 110 V130 H110"/><path d="M40 130 H20 V110"/>
+          </g>
+          <text x="75" y="94" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="62" letter-spacing="2" fill="currentColor">DLR</text>
+        </svg>
+        <span class="logo-name">De La Rosa &amp; Co.</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a class="link" href="#services">Services</a>
+        <a class="link" href="#approach">Approach</a>
+        <a class="link" href="#work-with">Who We Help</a>
+        <a class="alink right" href="mailto:hello@delarosaandco.com">Start a Project
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <a id="top"></a>
+  <section class="hero">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="label">Premier Web Studio</span>
+        <h1>Clean, high-end websites that make small business <em>win big</em>.</h1>
+        <p class="lead">We design and build premium websites for local service businesses — the kind that turn first impressions into paying customers.</p>
+        <div class="hero-cta">
+          <a class="alink right" href="mailto:hello@delarosaandco.com">Start a Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="alink down muted" href="#services">See What We Do
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+          </a>
+        </div>
+      </div>
+      <svg class="emblem reveal" viewBox="0 0 150 150" aria-hidden="true">
+        <g class="fr">
+          <path d="M28 52 V28 H52"/><path d="M98 28 H122 V52"/>
+          <path d="M122 98 V122 H98"/><path d="M52 122 H28 V98"/>
+        </g>
+        <text class="mn" x="75" y="86" text-anchor="middle" font-size="52" letter-spacing="2">DLR</text>
+        <text class="es" x="75" y="107" text-anchor="middle" font-size="6.5" letter-spacing="1.6">EST. 2026</text>
+      </svg>
+    </div>
+    <div class="scroll-cue"><div class="track"><span class="dot"></span></div><span>Scroll</span></div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="label">What We Do</span>
+        <h2>Everything your business needs to look the part online.</h2>
+        <p>One studio, handling the whole thing — design, build, and launch — so you can get back to running your business.</p>
+      </div>
+      <div class="rows reveal">
+        <a class="row" href="mailto:hello@delarosaandco.com">
+          <span class="num">01</span>
+          <div class="rc"><h3>Custom Websites</h3><p>A website designed from scratch around your business — fast, mobile-first, and built to turn visitors into customers.</p></div>
+          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="row" href="mailto:hello@delarosaandco.com">
+          <span class="num">02</span>
+          <div class="rc"><h3>Website Redesigns</h3><p>Already have a site that feels dated or clunky? We rebuild it into something modern, premium, and effortless to use.</p></div>
+          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="row" href="mailto:hello@delarosaandco.com">
+          <span class="num">03</span>
+          <div class="rc"><h3>Landing Pages</h3><p>A single, high-converting page for a promotion, a new service, or an ad campaign — live in days, not weeks.</p></div>
+          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="row" href="mailto:hello@delarosaandco.com">
+          <span class="num">04</span>
+          <div class="rc"><h3>Care &amp; Updates</h3><p>Ongoing tweaks, content changes, and peace of mind. Your site stays fresh while you focus on the work.</p></div>
+          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== APPROACH ===== -->
+  <section id="approach">
+    <div class="wrap split">
+      <div class="reveal">
+        <span class="label" style="margin-bottom:22px;">Why De La Rosa &amp; Co.</span>
+        <h2 style="font-size:clamp(30px,4.4vw,46px);margin-bottom:16px;">Big-studio quality. Small-business friendly.</h2>
+        <p style="color:var(--muted);font-size:17px;">You get the polish of a high-end agency without the runaround — one dedicated partner who actually picks up the phone.</p>
+      </div>
+      <ul class="approach-list reveal">
+        <li><h3><span class="mk">01</span>Premium by default</h3><p>Every site is designed to look expensive and trustworthy — because that's what wins the customer.</p></li>
+        <li><h3><span class="mk">02</span>Built to be found &amp; fast</h3><p>Mobile-first, quick-loading, and search-friendly from day one.</p></li>
+        <li><h3><span class="mk">03</span>Straight talk, fair pricing</h3><p>Clear scope, clear price, no jargon. You always know what you're getting.</p></li>
+      </ul>
+    </div>
+    <div class="wrap split" style="margin-top:70px;">
+      <div class="reveal">
+        <div class="stat"><div class="big">100%</div><div class="lbl">Custom-built — never a template dropped on your logo.</div></div>
+        <div class="stat"><div class="big">1&ndash;2 wks</div><div class="lbl">Typical turnaround for a launch-ready site.</div></div>
+      </div>
+      <div class="reveal">
+        <div class="stat"><div class="big">1:1</div><div class="lbl">You work directly with the founder, start to finish.</div></div>
+        <div class="stat"><div class="big">&infin;</div><div class="lbl">Built to grow with your business, not box it in.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHO WE HELP ===== -->
+  <section id="work-with">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="label">Who We Help</span>
+        <h2>Local businesses that deserve a website as good as their work.</h2>
+        <p>If you serve your community and rely on word-of-mouth, a premium website is the edge that turns referrals into bookings.</p>
+      </div>
+      <div class="chips reveal">
+        <span class="chip">Restaurants &amp; Cafés</span>
+        <span class="chip">Trades &amp; Contractors</span>
+        <span class="chip">Salons &amp; Barbers</span>
+        <span class="chip">Clinics &amp; Wellness</span>
+        <span class="chip">Real Estate</span>
+        <span class="chip">Auto &amp; Repair</span>
+        <span class="chip">Home Services</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="contact">
+    <div class="wrap reveal">
+      <span class="label">Let's Build</span>
+      <h2>Ready to win big online?</h2>
+      <p>Tell us about your business and we'll show you what's possible. No pressure, no jargon — just a clear plan.</p>
+      <div class="contact-cta">
+        <a class="alink right" href="mailto:hello@delarosaandco.com">hello@delarosaandco.com
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="alink right muted" href="tel:+10000000000">Call (000) 000-0000
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="wrap foot">
+      <a href="#top" class="logo"><span class="logo-name">De La Rosa &amp; Co.</span></a>
+      <p class="tag">Where small business wins big.</p>
+      <p>&copy; <span id="year"></span> De La Rosa &amp; Co. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 40));
+
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
